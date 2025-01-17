@@ -20,6 +20,7 @@ function App() {
           <Route path='/remove-background' element={<RemoveBackground/>}/>
         </Routes>
       </main>
+      
       <footer className='bg-gray-800 text-white p-4 mt-auto text-center'>
         <p>© 2025 AI Photo App. All rights reserved.</p>
       </footer>
