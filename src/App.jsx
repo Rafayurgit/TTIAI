@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Router, Routes} from "react-router-dom";
+import {Route, BrowserRouter , Routes} from "react-router-dom";
 import './App.css'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
@@ -10,7 +10,7 @@ import RemoveBackground from "./pages/RemoveBackground";
 function App() {
 
   return (
-    <Router>
+    <BrowserRouter >
       <div>
       <NavBar/>
       <main className="flex-grow">
@@ -25,7 +25,7 @@ function App() {
         <p>© 2025 AI Photo App. All rights reserved.</p>
       </footer>
     </div>
-    </Router>
+    </BrowserRouter >
     
   )
 }
