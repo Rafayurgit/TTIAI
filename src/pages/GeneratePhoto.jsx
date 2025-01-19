@@ -1,19 +1,18 @@
-import React {useState} from 'react';
+import React,{useState} from 'react';
 
 
 const GeneratePhoto = () => {
 
-  const [useInput, setUserInput]= useState();
+  const [userInput , setuserInput ]= useState();
   const [generateImage, setGenerateImage]= useState();
 
   const handelSubmit=()=>{
-    if(useInput.trim()){
+    if(userInput.trim()){
       setGenerateImage("url");
     }else{
       alert("Enter valid promt")
     }
   }
-
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
@@ -23,9 +22,9 @@ const GeneratePhoto = () => {
           type="text"
           placeholder="Enter a prompt"
           className="w-full p-3 mb-4 border border-gray-300 rounded shadow-sm" 
-          onchange={(e)=> setUserInput(e.target.value)}
+          onChange ={(e)=> setuserInput(e.target.value)}
         />
-        <button className="w-full bg-blue-500 text-white py-2 rounded shadow" onchange={handelSubmit}>
+        <button className="w-full bg-blue-500 text-white py-2 rounded shadow" onClick={handelSubmit}>
           Generate
         </button>
       </div>
