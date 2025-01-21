@@ -1,33 +1,33 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const RemoveBackground = () => {
 
-  const[uploadedImage, setUploadedImage]= useState(null);
-  const [isProcessing, setIsProcessing]= useState(false);
-  const [processedImage, setProcessedImage]= useState(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [processedImage, setProcessedImage] = useState(null);
 
-  const handelFileChange =(event)=>{
-    const file= event.target.files[0];
-    if(file){
-      const reader=new FileReader();
-      reader.onload=()=>{
-        setUploadedImage(reader.result)
+  const handelFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setUploadedImage(reader.result);
       }
       reader.readAsDataURL(file);
     }
   }
 
-  const handelRemoveBg=()=>{
-    if(!uploadedImage){
-      alert("Upload an image first")
+  const handelRemoveBg = () => {
+    if (!uploadedImage) {
+      alert("Upload an image first");
       return;
     }
 
     setIsProcessing(true);
-    setTimeout(()=>{
-      setProcessedImage(uploadedImage)
-      setIsProcessing(false)
-    },2000)
+    setTimeout(() => {
+      setProcessedImage(uploadedImage);
+      setIsProcessing(false);
+    }, 2000);
   }
 
   return (
@@ -36,17 +36,19 @@ const RemoveBackground = () => {
 
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-semibold mb-2">Upload Image</label>
+          <label htmlFor="file-upload" className="block text-gray-700 text-sm font-semibold mb-2">Upload Image</label>
           <input
+            id="file-upload"
             type="file"
             accept="image/*"
-            className="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ease-in-out"
+            className="w-full p-3 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-500"
             onChange={handelFileChange}
           />
+          <p className="text-sm text-gray-500">Supported formats: PNG, JPG, JPEG</p>
         </div>
 
         <button
-          className={`w-full py-2 rounded-lg shadow-md transition duration-300 ease-in-out ${isProcessing ? 'bg-gray-500' : 'bg-green-500 hover:bg-green-600'} text-white`}
+          className={`w-full py-2 rounded-lg shadow-md transition-all duration-300 ease-in-out ${isProcessing ? 'bg-gray-500' : 'bg-green-500 hover:bg-green-600 active:bg-green-700'} text-white`}
           disabled={isProcessing}
           onClick={handelRemoveBg}
         >
@@ -57,11 +59,11 @@ const RemoveBackground = () => {
       <div className="mt-8">
         <h3 className="text-lg text-gray-700 mb-2">Processed Image:</h3>
         {processedImage ? (
-          <div className="w-64 h-64 flex items-center justify-center bg-gray-300 border-2 border-gray-300 rounded-lg overflow-hidden">
+          <div className="w-64 h-64 flex items-center justify-center bg-gray-300 border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
             <img src={processedImage} alt="Processed" className="w-full h-full object-cover" />
           </div>
         ) : (
-          <div className="w-64 h-64 bg-gray-300 border-2 border-gray-300 rounded-lg flex items-center justify-center">
+          <div className="w-64 h-64 bg-gray-300 border-2 border-gray-300 rounded-lg flex items-center justify-center transition-all duration-300 ease-in-out">
             <p className="text-gray-500">No image yet</p>
           </div>
         )}
