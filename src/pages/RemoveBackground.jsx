@@ -1,22 +1,27 @@
 import React, {useState} from 'react';
 
-const[uploadedImage, setUploadedImage]= useState(null);
 
-const handelFileChange =(event)=>{
 
-  const file= event.target.file[0];
-  if(file){
-    const reader=new FileReader();
-    reader.onload=()=>{
-      setUploadedImage(reader.result)
-    }
-    reader.readAsDataURL(file);
-  }
-}
 
 
 
 const RemoveBackground = () => {
+
+  const[uploadedImage, setUploadedImage]= useState(null);
+
+  const handelFileChange =(event)=>{
+
+    const file= event.target.files[0];
+    if(file){
+      const reader=new FileReader();
+      reader.onload=()=>{
+        setUploadedImage(reader.result)
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Remove Image Background</h2>
