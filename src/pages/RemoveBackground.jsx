@@ -8,6 +8,8 @@ import React, {useState} from 'react';
 const RemoveBackground = () => {
 
   const[uploadedImage, setUploadedImage]= useState(null);
+  const [isProcessing, setIsProcessing]= useState(false);
+  const [processedImage, setProcessedImage]= useState(null);
 
   const handelFileChange =(event)=>{
 
@@ -21,6 +23,19 @@ const RemoveBackground = () => {
     }
   }
 
+  const handelRemoveBg=()=>{
+    if(!uploadedImage){
+      alert("Upload an image first")
+      return;
+    }
+
+    setIsProcessing(true);
+    setTimeout(()=>{
+      setProcessedImage(uploadedImage)
+      setIsProcessing(false)
+    },2000)
+  }
+
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center p-8">
@@ -32,8 +47,11 @@ const RemoveBackground = () => {
           className="w-full p-3 mb-4 border border-gray-300 rounded shadow-sm"
           onChange={handelFileChange}
         />
-        <button className="w-full bg-green-500 text-white py-2 rounded shadow">
-          Remove Background
+        <button className="w-full bg-green-500 text-white py-2 rounded shadow"
+        disabled={isProcessing}
+        onClick={handelRemoveBg}
+        >
+          {isProcessing ? ("Processing...") : ("Remove Background")}
         </button>
       </div>
       
